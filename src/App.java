@@ -1,0 +1,183 @@
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+class Person {
+
+    private int id;
+    private String name;
+
+    public Person(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+class Employee {
+
+    private String name;
+    private int salary;
+    private String department;
+
+    public Employee(String name, int salary, String department) {
+        this.name = name;
+        this.salary = salary;
+        this.department = department;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+}
+
+public class App {
+    public static void main(String[] args) throws Exception {
+
+        // Given a list of integers, filter out even numbers and collect the result into a new list.
+
+        List<Integer> list1 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        List<Integer> evenList1 = list1.stream().filter(x -> x % 2 == 0).collect(Collectors.toList());
+        System.out.println(evenList1); // [2, 4, 6, 8]
+
+        System.out.println();
+
+        // Convert a list of strings to uppercase using streams.
+
+        List<String> list2 = Arrays.asList("apple", "banana", "guava", "pumpkin");
+        list2.stream().map(x -> x.toUpperCase()).forEach(x -> System.out.println(x)); // [APPLE, BANANA, GUAVA, PUMPKIN]
+
+        System.out.println();
+        
+        // Find the sum of all even numbers in a list using Java Streams.
+
+        List<Integer> list3 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        System.out.println(list3.stream().filter(x -> x % 2 == 0).reduce(0, (x, y) -> x + y)); // 20
+
+        System.out.println();
+
+        // Given a list of integers, find the maximum and minimum value using Streams API.
+
+        List<Integer> list4 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        System.out.println(list4.stream().sorted().collect(Collectors.toList()).get(0)); // Smallest Number : 1
+        System.out.println(list4.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(0)); // Largest Number : 9
+
+        System.out.println();
+
+        // Count strings with length greater than 5.
+
+        List<String> list5 = Arrays.asList("apple", "banana", "guava", "pumpkin");
+        list5.stream().filter(x -> x.length() > 5).forEach(x -> System.out.println(x)); // [banana, pumpkin]
+
+        System.out.println();
+
+        // Given a list of strings, filter out duplicates and sort them in natural order.
+        List<String> list6 = Arrays.asList("apple", "banana", "guava", "pumpkin", "apple", "pear", "guava");
+        list6.stream().distinct().sorted(Comparator.naturalOrder()).forEach(x -> System.out.println(x)); // [apple, banana, guava, pear, pumpkin]
+
+        System.out.println();
+
+        // Convert a list of Person objects to a map where the key is the person's ID and the value is their name.
+
+        List<Person> list7 = List.of(
+            new Person(1, "Alice"),
+            new Person(2, "Bob"),
+            new Person(3, "Charlie"),
+            new Person(4, "David")
+        );
+        Map<Integer, String> map7 = list7.stream().collect(Collectors.toMap(x -> x.getId(), x -> x.getName()));
+        System.out.println(map7); // {1=Alice, 2=Bob, 3=Charlie, 4=David}
+
+        System.out.println();
+
+        // Find the second highest number from a list of integers using Streams API.
+
+        List<Integer> list8 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 7);
+        System.out.println(list8.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(1)); // Largest Number : 8
+
+        System.out.println();
+
+        // Find the first non-repeating character in a Integer list using Streams.
+
+        List<Integer> list9 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 7);
+        Set<Integer> setRepeat9 = new HashSet<>();
+        list9.stream().filter(x -> !setRepeat9.add(x)).forEach(x -> System.out.println(x)); // 7 (first repeating number)
+        Set<Integer> setNonRepeat9 = new HashSet<>();
+        System.out.println(list9.stream().filter(x -> setNonRepeat9.add(x)).collect(Collectors.toList()).get(0)); // 1 (first non-repeating number)
+
+        System.out.println();
+
+        // Find the first non-repeating character in a string using Streams.
+
+        String name10 = "Debayan Denapati";
+        Map<Character, Long> map10 = name10.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+        System.out.println(map10.entrySet().stream().filter(x -> x.getValue() == 1).map(x -> x.getKey()).findFirst().orElse(null));   
+
+        System.out.println();
+        
+        // Group a list of Employee objects by department using Collectors.groupingBy().
+
+        List<Employee> list11 = List.of(
+            new Employee("Alice", 50000, "HR"),
+            new Employee("Bob", 60000, "IT"),
+            new Employee("Charlie", 70000, "Finance"),
+            new Employee("David", 55000, "IT"),
+            new Employee("Eve", 65000, "Finance"),
+            new Employee("Frank", 48000, "HR")
+        );
+        Map<String, List<Employee>> map11 = list11.stream().collect(Collectors.groupingBy(x -> x.getDepartment()));
+
+        map11.forEach((department, employee) -> {
+            System.out.println(department + ": " + employee.stream()
+                .map(x -> x.getName())
+                .collect(Collectors.joining(", ")));
+        });
+
+        System.out.println();
+
+        // Given a list of integers, use the Stream API to filter out only the odd numbers.
+
+        List<Integer> list12 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        List<Integer> oddList12 = list12.stream().filter(x -> x % 2 == 1).collect(Collectors.toList());
+        System.out.println(oddList12); // [2, 4, 6, 8]
+
+        System.out.println();
+
+        // Given a list of strings, convert all of them to uppercase using Java Streams.
+
+        List<String> list13 = Arrays.asList("apple", "banana", "guava", "pumpkin");
+        list13.stream().map(x -> x.toUpperCase()).forEach(x -> System.out.println(x)); // [APPLE, BANANA, GUAVA, PUMPKIN]
+
+        System.out.println();
+
+        // Given a list of integers, use Java Streams to sort them in ascending order.
+
+        List<Integer> list14 = Arrays.asList(11, 92, 33, 4, 5, 62, 7, 8, 9);
+        List<Integer> answer14 = list14.stream().sorted().collect(Collectors.toList());
+        System.out.println(answer14);
+
+        System.out.println();
+
+    }
+}
