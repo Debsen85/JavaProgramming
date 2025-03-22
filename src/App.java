@@ -175,7 +175,35 @@ public class App {
 
         List<Integer> list14 = Arrays.asList(11, 92, 33, 4, 5, 62, 7, 8, 9);
         List<Integer> answer14 = list14.stream().sorted().collect(Collectors.toList());
-        System.out.println(answer14);
+        System.out.println(answer14); // [4, 5, 7, 8, 9, 11, 33, 62, 92]
+
+        System.out.println();
+
+        // Find Strings Starting with 'A'
+
+        List<String> list15 = Arrays.asList("apple", "banana", "guava", "pumpkin");
+        list15.stream().map(x -> x.toUpperCase()).filter(x -> x.startsWith("A")).forEach(x -> System.out.println(x)); // APPLE
+
+        System.out.println();
+
+        // Sum of All Numbers
+
+        List<Integer> list16 = Arrays.asList(11, 92, 33, 4, 5, 62, 7, 8, 9);
+        System.out.println(list16.stream().reduce(0, (x, y) -> x + y)); // 231
+
+        System.out.println();
+
+        // Given a list of integers, use Java Streams to find the maximum number in the list.
+
+        List<Integer> list17 = Arrays.asList(11, 92, 33, 4, 5, 62, 7, 8, 9);
+        System.out.println(list17.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(0)); // 92
+
+        System.out.println();
+
+        // Convert List of Strings to a Single Comma-Separated String
+
+        List<String> list18 = List.of("Alice", "Bob", "Charlie");
+        System.out.println(list18.stream().collect(Collectors.joining(", ")));
 
         System.out.println();
 
