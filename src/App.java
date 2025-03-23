@@ -257,12 +257,89 @@ public class App {
         );
         Employee answer23 = list23.stream().sorted(Comparator.comparingInt(Employee::getSalary).reversed()).findFirst().orElse(null);
         if (answer23 != null) {
-            System.out.println("Highest Paid Employee: " + answer23.getName() + " with salary " + answer23.getSalary()); // Charlie
+            System.out.println("Highest Paid Employee: " + answer23.getName() + " with salary " + answer23.getSalary()); // Highest Paid Employee: Charlie with salary 70000
         } else {
             System.out.println("No employees found.");
         }
 
         System.out.println();
-        
+
+        // Sort Employees by Salary (Descending Order)
+
+        List<Employee> list24 = List.of(
+            new Employee("Alice", 50000, "HR"),
+            new Employee("Bob", 60000, "IT"),
+            new Employee("Charlie", 70000, "Finance"),
+            new Employee("David", 55000, "IT"),
+            new Employee("Eve", 65000, "Finance"),
+            new Employee("Frank", 48000, "HR")
+        );
+        List<Employee> answer24 = list24.stream().sorted(Comparator.comparingInt(Employee::getSalary).reversed()).collect(Collectors.toList());
+        if (answer24 != null) {
+            answer24.stream().forEach(x -> System.out.println(x.getName())); // [Charlie, Eve, Bob, David, Alice, Frank]
+        } else {
+            System.out.println("No employees found.");
+        }
+
+        System.out.println();
+
+        // Concatenate Names of All Employees in a Single String
+
+        List<Employee> list25 = List.of(
+            new Employee("Alice", 50000, "HR"),
+            new Employee("Bob", 60000, "IT"),
+            new Employee("Charlie", 70000, "Finance"),
+            new Employee("David", 55000, "IT"),
+            new Employee("Eve", 65000, "Finance"),
+            new Employee("Frank", 48000, "HR")
+        );
+        System.out.println(list25.stream().map(x -> x.getName()).collect(Collectors.joining(", "))); // Alice, Bob, Charlie, David, Eve, Frank
+
+        System.out.println();
+
+        // Partition Employees Based on Salary (Above & Below 50,000)
+
+        List<Employee> list26 = List.of(
+            new Employee("Alice", 50000, "HR"),
+            new Employee("Bob", 60000, "IT"),
+            new Employee("Charlie", 70000, "Finance"),
+            new Employee("David", 55000, "IT"),
+            new Employee("Eve", 65000, "Finance"),
+            new Employee("Frank", 48000, "HR")
+        );
+        Map<Boolean, List<Employee>> answer26 = list26.stream()
+        .collect(Collectors.partitioningBy(emp -> emp.getSalary() >= 60000));
+
+        // Print the results
+        System.out.println("Employees earning ₹60,000 or more:");
+        answer26.get(true).forEach(emp -> 
+            System.out.println("  " + emp.getName() + " - " + emp.getSalary()));
+
+        System.out.println("\nEmployees earning less than ₹60,000:");
+        answer26.get(false).forEach(emp -> 
+            System.out.println("  " + emp.getName() + " - " + emp.getSalary()));
+
+        System.out.println();
+
+        // Find Duplicate Elements in a List
+
+        List<Integer> list27 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 7);
+        Set<Integer> set27 = new HashSet<>();
+        System.out.println(list27.stream().filter(x -> !set27.add(x)).collect(Collectors.toList())); // [7]
+
+        System.out.println();
+
+        // Find the most frequently occurring character
+
+        String string28 = "banana";
+        Character answer28 = string28.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream() .max(Map.Entry.comparingByValue()).map(Map.Entry::getKey).orElse(null);
+
+        if (answer28 != null) {
+            System.out.println("Most Frequent Character: " + answer28);
+        } else {
+            System.out.println("Input string is empty.");
+        }
+
+        System.out.println();
     }
 }
