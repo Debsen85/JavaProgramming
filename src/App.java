@@ -10,15 +10,15 @@ import java.util.stream.Collectors;
 
 class Person {
 
-    private int id;
+    private Integer id;
     private String name;
 
-    public Person(int id, String name) {
+    public Person(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -30,10 +30,10 @@ class Person {
 class Employee {
 
     private String name;
-    private int salary;
+    private Integer salary;
     private String department;
 
-    public Employee(String name, int salary, String department) {
+    public Employee(String name, Integer salary, String department) {
         this.name = name;
         this.salary = salary;
         this.department = department;
@@ -43,7 +43,7 @@ class Employee {
         return name;
     }
 
-    public int getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
@@ -130,7 +130,7 @@ public class App {
 
         // Find the first non-repeating character in a string using Streams.
 
-        String name10 = "Debayan Denapati";
+        String name10 = "Debayan Senapati";
         Map<Character, Long> map10 = name10.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
         System.out.println(map10.entrySet().stream().filter(x -> x.getValue() == 1).map(x -> x.getKey()).findFirst().orElse(null));   
 
@@ -207,5 +207,62 @@ public class App {
 
         System.out.println();
 
+        // Count Elements in a List
+
+        List<String> list19 = Arrays.asList("apple", "banana", "guava", "pumpkin"); // 4
+        System.out.println(list19.stream().count());
+
+        System.out.println();
+
+        // Check if a List Contains Any Odd Number
+
+        List<Integer> list20 = Arrays.asList(11, 92, 33, 4, 5, 62, 7, 8, 9);
+        System.out.println(list20.stream().anyMatch(x -> x % 2 == 0)); // true
+
+        System.out.println();
+
+        // Remove Duplicates from a List
+
+        List<Integer> list21 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 7);
+        Set<Integer> set21 = new HashSet<>();
+        System.out.println(list21.stream().filter(x -> set21.add(x)).collect(Collectors.toList())); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+        System.out.println();
+
+        // Find Employees with Salary > 60,000
+
+        List<Employee> list22 = List.of(
+            new Employee("Alice", 50000, "HR"),
+            new Employee("Bob", 60000, "IT"),
+            new Employee("Charlie", 70000, "Finance"),
+            new Employee("David", 55000, "IT"),
+            new Employee("Eve", 65000, "Finance"),
+            new Employee("Frank", 48000, "HR")
+        );
+
+        List<Employee> newList22 = list22.stream().filter(x -> x.getSalary() > 60000).collect(Collectors.toList());
+        System.out.println(newList22.stream().map(x -> x.getName()).collect(Collectors.toList())); // [Charlie, Eve]
+        
+        System.out.println();
+
+        // Find the Employee with the Highest Salary
+
+        List<Employee> list23 = List.of(
+            new Employee("Alice", 50000, "HR"),
+            new Employee("Bob", 60000, "IT"),
+            new Employee("Charlie", 70000, "Finance"),
+            new Employee("David", 55000, "IT"),
+            new Employee("Eve", 65000, "Finance"),
+            new Employee("Frank", 48000, "HR")
+        );
+        Employee answer23 = list23.stream().sorted(Comparator.comparingInt(Employee::getSalary).reversed()).findFirst().orElse(null);
+        if (answer23 != null) {
+            System.out.println("Highest Paid Employee: " + answer23.getName() + " with salary " + answer23.getSalary()); // Charlie
+        } else {
+            System.out.println("No employees found.");
+        }
+
+        System.out.println();
+        
     }
 }
