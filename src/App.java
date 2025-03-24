@@ -341,5 +341,41 @@ public class App {
         }
 
         System.out.println();
+
+        // Filter Even Numbers: Given a list of integers, filter out the even numbers using Java Streams.
+
+        List<Integer> list28 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 7);
+        System.out.println(list28.stream().filter(x -> x % 2 == 0).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Convert Strings to Uppercase: Given a list of strings, convert them all to uppercase using Streams.
+
+        List<String> list29 = Arrays.asList("apple", "banana", "guava", "pumpkin");
+        System.out.println(list29.stream().map(x -> x.toUpperCase()).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find the First Element: Given a list of integers, use Streams to find the first element greater than 10.
+
+        List<Integer> list30 = Arrays.asList(1, 2, 3, 40, 5, 6, 7, 81, 9, 7);
+        System.out.println(list30.stream().filter(x -> x > 10).collect(Collectors.toList()).get(0));
+
+        System.out.println();
+
+        // Sum of List Elements: Find the sum of all even elements in a list using Streams.
+
+        List<Integer> list31 = Arrays.asList(1, 2, 3, 40, 5, 6, 7, 81, 9, 7);
+        System.out.println(list31.stream().filter(x -> x % 2 == 0).reduce(0, (x, y) -> x + y));
+
+        System.out.println();
+
+        // Count Words Starting with 'A': Given a list of words, count how many start with the letter ‘A’.
+        
+        List<String> list32 = Arrays.asList("apple", "banana", "guava", "pumpkin");
+        System.out.println(list32.stream().map(x -> x.toUpperCase()).filter(x -> x.startsWith("A")).count());
+
+        System.out.println();
+
     }
 }
