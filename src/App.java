@@ -377,5 +377,41 @@ public class App {
 
         System.out.println();
 
+        // Find Maximum and Minimum: Given a list of numbers, find the maximum and minimum values using Streams.
+
+        List<Integer> list33 = Arrays.asList(1, 2, 3, 40, 5, 6, 7, 81, 9, 7);
+        System.out.println(list33.stream().min((x, y) -> x - y));
+        System.out.println(list33.stream().min((x, y) -> y - x));
+        
+        System.out.println();
+
+        // Square and Collect: Given a list of integers, square each number and collect the results into a list.
+
+        List<Integer> list34 = Arrays.asList(1, 2, 3, 40, 5, 6, 7, 81, 9, 7);
+        System.out.println(list34.stream().map(x -> x * x).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Remove Duplicates: Given a list with duplicate elements, remove the duplicates using Streams.
+
+        List<Integer> list35 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, 7);
+        System.out.println(list35.stream().distinct().collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Check if Any Element Matches: Given a list of strings, check if any string contains the word "Java".
+
+        List<String> list36 = Arrays.asList("apple", "banana", "guava", "pumpkin");
+        System.out.println(list36.stream().anyMatch(x -> x.equals("Java")));
+
+        System.out.println();
+
+        // Sort a List of Strings: Sort a list of names alphabetically using Streams.
+
+        List<String> list37 = Arrays.asList("carrot", "apple", "banana", "guava", "pumpkin");
+        System.out.println(list37.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList()));
+
+        System.out.println();
+
     }
 }
