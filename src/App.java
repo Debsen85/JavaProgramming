@@ -421,5 +421,7 @@ public class App {
         Map<String, Long> map38 = list38.stream().collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
         System.out.println(map38.entrySet().stream().max(Map.Entry.comparingByValue()).map(x -> x.getKey()).orElse(null));
 
+        System.out.println();
+
     }
 }
