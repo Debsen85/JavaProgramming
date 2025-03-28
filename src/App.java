@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import javax.swing.plaf.metal.MetalBorders.ScrollPaneBorder;
+
 class Person {
 
     private Integer id;
@@ -412,6 +414,12 @@ public class App {
         System.out.println(list37.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList()));
 
         System.out.println();
+
+        // Find the Most Frequent Word in a List: Given a list of words, determine which word appears the most times.
+
+        List<String> list38 = Arrays.asList("carrot", "apple", "banana", "guava", "pumpkin", "apple");
+        Map<String, Long> map38 = list38.stream().collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+        System.out.println(map38.entrySet().stream().max(Map.Entry.comparingByValue()).map(x -> x.getKey()).orElse(null));
 
     }
 }
