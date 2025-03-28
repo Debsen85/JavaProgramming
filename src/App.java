@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -32,11 +33,13 @@ class Employee {
     private String name;
     private Integer salary;
     private String department;
+    private Integer age;
 
-    public Employee(String name, Integer salary, String department) {
+    public Employee(String name, Integer salary, String department, Integer age) {
         this.name = name;
         this.salary = salary;
         this.department = department;
+        this.age = age;
     }
 
     public String getName() {
@@ -50,8 +53,16 @@ class Employee {
     public String getDepartment() {
         return department;
     }
-}
 
+    public Integer getAge() {
+        return age;
+    }
+
+    @Override
+    public String toString() {
+        return name + " | Salary: " + salary + " | Dept: " + department + " | Age: " + age;
+    }
+}
 public class App {
     public static void main(String[] args) throws Exception {
 
@@ -139,12 +150,16 @@ public class App {
         // Group a list of Employee objects by department using Collectors.groupingBy().
 
         List<Employee> list11 = List.of(
-            new Employee("Alice", 50000, "HR"),
-            new Employee("Bob", 60000, "IT"),
-            new Employee("Charlie", 70000, "Finance"),
-            new Employee("David", 55000, "IT"),
-            new Employee("Eve", 65000, "Finance"),
-            new Employee("Frank", 48000, "HR")
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
         );
         Map<String, List<Employee>> map11 = list11.stream().collect(Collectors.groupingBy(x -> x.getDepartment()));
 
@@ -232,12 +247,16 @@ public class App {
         // Find Employees with Salary > 60,000
 
         List<Employee> list22 = List.of(
-            new Employee("Alice", 50000, "HR"),
-            new Employee("Bob", 60000, "IT"),
-            new Employee("Charlie", 70000, "Finance"),
-            new Employee("David", 55000, "IT"),
-            new Employee("Eve", 65000, "Finance"),
-            new Employee("Frank", 48000, "HR")
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
         );
 
         List<Employee> newList22 = list22.stream().filter(x -> x.getSalary() > 60000).collect(Collectors.toList());
@@ -248,12 +267,16 @@ public class App {
         // Find the Employee with the Highest Salary
 
         List<Employee> list23 = List.of(
-            new Employee("Alice", 50000, "HR"),
-            new Employee("Bob", 60000, "IT"),
-            new Employee("Charlie", 70000, "Finance"),
-            new Employee("David", 55000, "IT"),
-            new Employee("Eve", 65000, "Finance"),
-            new Employee("Frank", 48000, "HR")
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
         );
         Employee answer23 = list23.stream().sorted(Comparator.comparingInt(Employee::getSalary).reversed()).findFirst().orElse(null);
         if (answer23 != null) {
@@ -267,12 +290,16 @@ public class App {
         // Sort Employees by Salary (Descending Order)
 
         List<Employee> list24 = List.of(
-            new Employee("Alice", 50000, "HR"),
-            new Employee("Bob", 60000, "IT"),
-            new Employee("Charlie", 70000, "Finance"),
-            new Employee("David", 55000, "IT"),
-            new Employee("Eve", 65000, "Finance"),
-            new Employee("Frank", 48000, "HR")
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
         );
         List<Employee> answer24 = list24.stream().sorted(Comparator.comparingInt(Employee::getSalary).reversed()).collect(Collectors.toList());
         if (answer24 != null) {
@@ -286,12 +313,16 @@ public class App {
         // Concatenate Names of All Employees in a Single String
 
         List<Employee> list25 = List.of(
-            new Employee("Alice", 50000, "HR"),
-            new Employee("Bob", 60000, "IT"),
-            new Employee("Charlie", 70000, "Finance"),
-            new Employee("David", 55000, "IT"),
-            new Employee("Eve", 65000, "Finance"),
-            new Employee("Frank", 48000, "HR")
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
         );
         System.out.println(list25.stream().map(x -> x.getName()).collect(Collectors.joining(", "))); // Alice, Bob, Charlie, David, Eve, Frank
 
@@ -300,12 +331,16 @@ public class App {
         // Partition Employees Based on Salary (Above & Below 50,000)
 
         List<Employee> list26 = List.of(
-            new Employee("Alice", 50000, "HR"),
-            new Employee("Bob", 60000, "IT"),
-            new Employee("Charlie", 70000, "Finance"),
-            new Employee("David", 55000, "IT"),
-            new Employee("Eve", 65000, "Finance"),
-            new Employee("Frank", 48000, "HR")
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
         );
         Map<Boolean, List<Employee>> answer26 = list26.stream()
         .collect(Collectors.partitioningBy(emp -> emp.getSalary() >= 60000));
@@ -418,6 +453,102 @@ public class App {
         List<String> list38 = Arrays.asList("carrot", "apple", "banana", "guava", "pumpkin", "apple");
         Map<String, Long> map38 = list38.stream().collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
         System.out.println(map38.entrySet().stream().max(Map.Entry.comparingByValue()).map(x -> x.getKey()).orElse(null));
+
+        System.out.println();
+
+        // Group Employees by Age Brackets: Given a list of employees, group them into age brackets (e.g., <30, 30-50, >50).
+
+        List<Employee> list39 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        Map<String, List<Employee>> map39 = list39.stream()
+            .collect(Collectors.groupingBy(emp -> {
+                if (emp.getAge() < 30) return "Below 30";
+                else if (emp.getAge() <= 50) return "30-50";
+                else return "Above 50";
+            }));
+
+        map39.forEach((x, y) -> 
+            System.out.println(x + ": " + y)
+        );
+
+        System.out.println();
+
+        // Find the Highest Salary: Given a list of salaries, find the second-highest salary using Streams.
+
+        List<Employee> list40 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        System.out.println(list40.stream().max((x, y) -> x.getSalary() - y.getSalary()).toString());
+
+        System.out.println();
+
+        // Find the Second-Highest Salary: Given a list of salaries, find the second-highest salary using Streams.
+
+        List<Employee> list41 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        System.out.println(list41.stream().sorted((x, y) -> y.getSalary() - x.getSalary()).collect(Collectors.toList()).get(1));
+
+        System.out.println();
+
+        // Partition Employees Based on Experience: Partition a list of employees into two groups—those with more than 5 years of experience and those with less.
+
+        List<Employee> list42 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+
+        Map<String, List<Employee>> map42 = list42.stream().collect(Collectors.groupingBy(x -> {
+            if (x.getAge() - 24 <= 5) return "Junior";
+            else return "Senior";
+        }));
+        map42.forEach((x, y) -> 
+            System.out.println(x + ": " + y)
+        );
+
+        System.out.println();
+
+        // Find the Longest Word: Given a sentence, use Streams to find the longest word.
+
+        String string43 = "Java Streams provide a powerful and expressive way to process collections of data efficiently, reducing boilerplate code and improving readability in modern programming";
+        Optional<String> answer43 = Arrays.asList(string43.split("\\s+")).stream().max((x, y) -> x.length() - y.length());
+        answer43.ifPresent(word -> System.out.println(word + " : " + word.length()));
 
         System.out.println();
 
