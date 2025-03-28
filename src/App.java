@@ -8,8 +8,6 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import javax.swing.plaf.metal.MetalBorders.ScrollPaneBorder;
-
 class Person {
 
     private Integer id;
