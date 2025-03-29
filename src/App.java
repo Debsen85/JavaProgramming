@@ -552,5 +552,75 @@ public class App {
 
         System.out.println();
 
+        // Convert List to Uppercase – Given a list of strings, convert each string to uppercase using Streams.
+
+        List<String> list44 = Arrays.asList("apple", "banana", "guava", "pumpkin");
+        System.out.println(list44.stream().map(x -> x.toUpperCase()).filter(x -> x.startsWith("A")).count());
+
+        System.out.println();
+
+        // Filter Even Numbers – Given a list of integers, filter out only even numbers.
+
+        List<Integer> list45 = Arrays.asList(1, 2, 3, 40, 5, 6, 7, 81, 9, 7);
+        System.out.println(list45.stream().filter(x -> x % 2 == 0).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Sum of All Elements – Find the sum of all numbers in a list using Streams.
+
+        List<Integer> list46 = Arrays.asList(1, 2, 3, 40, 5, 6, 7, 81, 9, 7);
+        System.out.println(list46.stream().reduce(0, (x, y) -> x + y));
+
+        System.out.println();
+
+        // Find Words Starting with 'A' – Given a list of words, find and collect all words that start with the letter 'A'.
+
+        List<String> list47 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list47.stream().filter(x -> x.startsWith("A")).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find Maximum Value – Find the maximum value in a list of integers using Streams.
+
+        List<Integer> list48 = Arrays.asList(1, 2, 3, 40, 5, 6, 7, 81, 9, 7);
+        System.out.println(list48.stream().max((x, y) -> x - y).orElse(0));
+
+        System.out.println();
+
+        // Count Strings with Length > 5 – Given a list of strings, count how many have a length greater than 5.
+
+        List<String> list49 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list49.stream().filter(x -> x.length() > 6).count());
+
+        System.out.println();
+
+        // Remove Duplicates – Given a list with duplicate integers, remove duplicates using Streams.
+
+        List<Integer> list50 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, 7);
+        System.out.println(list50.stream().distinct().collect(Collectors.toList()));
+
+        System.out.println();        
+
+        // Sort a List of Strings – Sort a list of strings in alphabetical order.
+
+        List<String> list51 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list51.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Concatenate Strings – Given a list of words, join them into a single sentence separated by spaces.
+
+        List<String> list52 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list52.stream().collect(Collectors.joining(" ")));
+
+        System.out.println();
+
+        // Check If Any Element is Negative – Determine if any number in a list is negative using Streams.
+
+        List<Integer> list53 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, 7);
+        System.out.println(list53.stream().distinct().anyMatch(x -> x < 0));
+
+        System.out.println();        
+
     }
 }
