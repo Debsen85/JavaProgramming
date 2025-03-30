@@ -620,7 +620,63 @@ public class App {
         List<Integer> list53 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, 7);
         System.out.println(list53.stream().distinct().anyMatch(x -> x < 0));
 
-        System.out.println();        
+        System.out.println();    
+        
+        // Group Employees by Department – Given a list of Employee objects, group them by department using Collectors.groupingBy().
 
+        List<Employee> list54 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        Map<String, List<Employee>> map54 = list54.stream().collect(Collectors.groupingBy(x -> x.getDepartment()));
+
+        map54.forEach((department, employee) -> {
+            System.out.println(department + ": " + employee.stream()
+                .map(x -> x.getName())
+                .collect(Collectors.joining(", ")));
+        });
+
+        System.out.println();
+
+        // Find Second Largest Number – Find the second largest number in a list using Streams.
+
+        List<Integer> list55 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, 7);
+        System.out.println(list55.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList()).get(1));
+
+        System.out.println();    
+
+        // Sort Employees by Salary in Descending Order – Given a list of Employee objects, sort them by salary in descending order.
+
+        List<Employee> list56 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        list56.stream().sorted((x, y) -> y.getSalary() - x.getSalary()).map(x -> x.getName()).forEach(x -> System.out.println(x));
+
+        System.out.println();
+
+        // Find Duplicate Elements in a List – Find all duplicate elements in a list using Streams.
+
+        List<Integer> list57 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, 7);
+        Set<Integer> set57 = new HashSet<>();
+        System.out.println(list57.stream().filter(x -> !set57.add(x)).collect(Collectors.toSet()));
+
+        System.out.println();
     }
 }
