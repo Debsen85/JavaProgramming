@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -678,5 +679,67 @@ public class App {
         System.out.println(list57.stream().filter(x -> !set57.add(x)).collect(Collectors.toSet()));
 
         System.out.println();
+
+        // Find the Average Salary of Employees – Compute the average salary from a list of Employee objects.
+
+        List<Employee> list58 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        System.out.println(list58.stream().map(x -> x.getSalary()).mapToInt(Integer::intValue).average().orElse(0));
+
+        System.out.println();
+
+        // Flatten a List of Lists – Convert List<List<Integer>> into a single List<Integer> using Streams.
+
+        List<List<Integer>> list59 = Arrays.asList(
+            Arrays.asList(1, 2, 3),
+            Arrays.asList(4, 5),
+            Arrays.asList(6, 7, 8, 9)
+        );
+
+        System.out.println(list59.stream().flatMap(List::stream).collect(Collectors.toList()));
+
+        // Find the First Non-Repeating Character in a String – Identify the first non-repeating character using Streams.
+
+        String name60 = "Debayan Senapati";
+        Map<Character, Long> map60 = name60.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+        System.out.println(map60.entrySet().stream().filter(x -> x.getValue() == 1).map(x -> x.getKey()).findFirst().orElse(null));   
+
+        System.out.println();
+
+        // Check If a List Contains Only Positive Numbers – Verify if all elements in a list are positive.
+
+        List<Integer> list61 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(!list61.stream().anyMatch(x -> x < 0));
+
+        System.out.println();
+
+        // Convert a Map to a List of Keys – Extract only the keys from a Map<K, V> using Streams.
+
+        Map<String, Integer> map62 = new HashMap<>();
+        map62.put("Alice", 85);
+        map62.put("Bob", 90);
+        map62.put("Charlie", 78);
+        map62.put("David", 92);
+        System.out.println(map62.entrySet().stream().map(x -> x.getKey()).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Sort Strings by Their Length – Given a list of words, sort them based on length.
+
+        List<String> list63 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list63.stream().sorted((x, y) -> x.length() - y.length()).collect(Collectors.toList()));
+
+        System.out.println();
+
     }
 }
