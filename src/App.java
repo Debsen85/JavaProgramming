@@ -346,7 +346,6 @@ public class App {
         Map<Boolean, List<Employee>> answer26 = list26.stream()
         .collect(Collectors.partitioningBy(emp -> emp.getSalary() >= 60000));
 
-        // Print the results
         System.out.println("Employees earning ₹60,000 or more:");
         answer26.get(true).forEach(emp -> 
             System.out.println("  " + emp.getName() + " - " + emp.getSalary()));
@@ -738,6 +737,23 @@ public class App {
 
         List<String> list63 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
         System.out.println(list63.stream().sorted((x, y) -> x.length() - y.length()).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find the Kth Largest Element – Find the Kth largest element in a list of numbers.
+
+        List<Integer> list64 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list64.stream().sorted((x, y) -> y - x).collect(Collectors.toList()).get(3));
+
+        System.out.println();
+
+        // Partition Numbers into Even and Odd – Use partitioningBy() to separate even and odd numbers.
+
+        List<Integer> list65 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        Map<Boolean, List<Integer>> map65 = list65.stream().collect(Collectors.partitioningBy(x -> x % 2 == 0));
+        map65.get(true).forEach(x -> System.out.print(x + " "));
+        System.out.println();
+        map65.get(false).forEach(x -> System.out.print(x + " "));
 
         System.out.println();
 
