@@ -757,5 +757,75 @@ public class App {
 
         System.out.println();
 
+        // Convert a List of Strings to Uppercase
+
+        List<String> list66 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list66.stream().map(x -> x.toUpperCase()).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find Even Numbers in a List
+
+        List<Integer> list67 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list67.stream().filter(x -> x % 2 == 0).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Count Elements in a List
+
+        List<Integer> list68 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list68.stream().count());
+
+        System.out.println();
+
+        // Sort a List of Integers
+
+        List<Integer> list69 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list69.stream().sorted((x, y) -> x - y).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find the First Element in a Stream
+
+        List<Integer> list70 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list70.stream().findFirst().orElse(0));
+
+        System.out.println();
+
+        // Find the Maximum Value in a List
+
+        List<Integer> list71 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list71.stream().max((x, y) -> x - y).orElse(0));
+
+        System.out.println();
+
+        // Remove Duplicates from a List
+
+        List<Integer> list72 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list72.stream().distinct().collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find the Length of Each String
+
+        List<String> list73 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list73.stream().map(x -> x.length()).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Check If Any Element Matches a Condition
+
+        List<Integer> list74 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list74.stream().filter(x -> x >= 50).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Join Strings With a Comma
+
+        List<String> list75 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list75.stream().collect(Collectors.joining(", ")));
+
+        System.out.println();
+
     }
 }
