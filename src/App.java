@@ -707,6 +707,8 @@ public class App {
 
         System.out.println(list59.stream().flatMap(List::stream).collect(Collectors.toList()));
 
+        System.out.println();
+
         // Find the First Non-Repeating Character in a String – Identify the first non-repeating character using Streams.
 
         String name60 = "Debayan Senapati";
@@ -864,6 +866,66 @@ public class App {
         System.out.println(list80.stream().collect(Collectors.averagingInt(x -> x)));
 
         System.out.println();
+
+        // Find Employees With a Salary Greater Than 50,000
+
+        List<Employee> list81 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        System.out.println(list81.stream().filter(x -> x.getSalary() > 60000).map(x -> (x.getName() + " " + x.getDepartment() + " " + x.getAge())).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Sort a List of Employees by Name and Salary
+
+        List<Employee> list82 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        System.out.println(list82.stream().sorted(Comparator.comparing(Employee::getName).thenComparing((x, y) -> y.getSalary() - x.getSalary())).map(x -> (x.getName() + " " + x.getDepartment() + " " + x.getAge() + " " + x.getSalary())).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find the First Non-Repeating Character in a String
+
+        String name83 = "Debayan Senapati";
+        Map<Character, Long> map83 = name83.chars().mapToObj(x -> (char) x).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+        System.out.println(map83.entrySet().stream().filter(x -> x.getValue() == 1).map(x -> x.getKey()).findFirst().orElse(null));
+
+        System.out.println();
+
+        // Flatten a List of Lists
+
+        List<List<Integer>> list84 = Arrays.asList(
+            Arrays.asList(1, 2, 3),
+            Arrays.asList(4, 5),
+            Arrays.asList(6, 7, 8, 9)
+        );
+        System.out.println(list84.stream().flatMap(List::stream).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find the Longest Word in a Sentence
+
+        String string85 = "Java Streams provide a powerful and expressive way to process collections of data efficiently reducing boilerplate code and improving readability in modern programming";
+        System.out.println(Arrays.stream(string85.split(" ")).max((x, y) -> x.length() - y.length()).orElse(null));
 
     }
 }
