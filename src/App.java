@@ -927,5 +927,7 @@ public class App {
         String string85 = "Java Streams provide a powerful and expressive way to process collections of data efficiently reducing boilerplate code and improving readability in modern programming";
         System.out.println(Arrays.stream(string85.split(" ")).max((x, y) -> x.length() - y.length()).orElse(null));
 
+        System.out.println();
+
     }
 }
