@@ -827,5 +827,43 @@ public class App {
 
         System.out.println();
 
+        // Find the Second-Highest Number in a List
+
+        List<Integer> list76 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list76.stream().sorted((x, y) -> y - x).collect(Collectors.toList()).get(1));
+
+        System.out.println();
+
+        // Find the Most Frequent Element in a List
+
+        List<Integer> list77 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        Map<Integer, Long> map77 = list77.stream().collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+        System.out.println(map77.entrySet().stream().max(Map.Entry.comparingByValue()).map(x -> x.getKey()).orElse(null));
+
+        System.out.println();
+
+        // Group Strings by Their Length
+
+        List<String> list78 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        Map<Integer, List<String>> map78 = list78.stream().collect(Collectors.groupingBy(x -> x.length()));
+        map78.forEach((length, strings) -> System.out.println(length + " : " + strings.stream().collect(Collectors.joining(", "))));
+
+        System.out.println();
+
+        //Partition Numbers into Even and Odd
+
+        List<Integer> list79 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, 7);
+        Map<Boolean, List<Integer>> map79 = list79.stream().collect(Collectors.partitioningBy(x -> x % 2 == 0));
+        map79.forEach((parity, values) -> System.out.println(parity + " : " + values.stream().collect(Collectors.toList())));
+
+        System.out.println();
+
+        // Calculate the Average of Numbers
+
+        List<Integer> list80 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, 7);
+        System.out.println(list80.stream().collect(Collectors.averagingInt(x -> x)));
+
+        System.out.println();
+
     }
 }
