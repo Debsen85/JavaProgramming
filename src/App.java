@@ -929,5 +929,42 @@ public class App {
 
         System.out.println();
 
+        // Find the Sum of All Numbers
+
+        List<Integer> list86 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list86.stream().reduce(0, (x, y) -> x + y));
+
+        System.out.println();
+
+    
+        // Find All Names That Start With a Given Letter
+
+        List<String> list87 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list87.stream().filter(x -> x.startsWith("A")).collect(Collectors.joining(", ")));
+
+        System.out.println();
+
+        // Find the Smallest Number in a List
+
+        List<Integer> list88 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list88.stream().min((x, y) -> x- y).orElse(0));
+
+        System.out.println();
+
+        // Remove All Null or Empty Strings
+
+        List<String> list89 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot", "");
+        System.out.println(list89.stream().filter(x -> x.length() > 0).collect(Collectors.joining(", ")));
+
+        System.out.println();
+
+        // Check If All Elements Are Positive
+
+        List<Integer> list90 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(!list90.stream().anyMatch(x -> x < 0));
+
+        System.out.println();
+
+
     }
 }
