@@ -965,6 +965,40 @@ public class App {
 
         System.out.println();
 
+        // Convert a List of Integers to a List of Strings
+
+        List<Integer> list91 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list91.stream().map(x -> Integer.toString(x)).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find the Count of Elements Greater Than 10
+
+        List<Integer> list92 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list92.stream().filter(x -> x > 10).count());
+
+        System.out.println();
+
+        // Find Distinct Elements in a List
+
+        List<Integer> list93 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list93.stream().distinct().collect(Collectors.toList()));
+
+        System.out.println();
+        
+        // Sort Strings by Length
+
+        List<String> list94 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list94.stream().sorted((x, y) -> x.length() - y.length()).collect(Collectors.joining(", ")));
+
+        System.out.println();
+
+        // Find Strings That Contain a Specific Substring
+
+        List<String> list95 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list95.stream().filter(x -> x.contains("ana")).collect(Collectors.joining(", ")));
+
+        System.out.println();
 
     }
 }
