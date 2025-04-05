@@ -1000,5 +1000,59 @@ public class App {
 
         System.out.println();
 
+        // Sort Employees by Name, Then by Salary in Descending Order
+
+        List<Employee> list96 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        System.out.println(list96.stream().sorted(Comparator.comparing(Employee::getName).thenComparing(Employee::getSalary)).map(x -> x.getName() + " " + x.getDepartment() + " " + x.getSalary()).collect(Collectors.joining(", ")));
+
+        System.out.println();
+
+        // Find the Third-Highest Number in a List
+
+        List<Integer> list97 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list97.stream().sorted((x, y) -> y - x).collect(Collectors.toList()).get(2));
+
+        System.out.println();
+
+        // Find the Second Most Frequent Word in a List of Strings
+
+        List<String> list98 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot", "Apple", "Apple", "Apricot");
+        Map<String, Long> map98 = list98.stream().collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+        System.out.println(map98.entrySet().stream().sorted((x, y) -> Long.compare(y.getValue(), x.getValue())).map(x -> x.getKey()).collect(Collectors.toList()).get(1));
+
+        System.out.println();
+
+        // Group Numbers into Even and Odd
+
+        List<Integer> list99 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        Map<Boolean, List<Integer>> map99 = list99.stream().collect(Collectors.partitioningBy(x -> x % 2 == 0));
+        map99.forEach((flag, numbers) -> {
+            if (flag) {
+                System.out.println("Even : " + numbers.stream().collect(Collectors.toList()));
+            } else {
+                System.out.println("Odd : " + numbers.stream().collect(Collectors.toList()));
+            }
+        });
+
+        System.out.println();
+
+        // Find the Shortest Word in a Sentence
+
+        String string100 = "Java Streams provide a powerful and expressive way to process collections of data efficiently reducing boilerplate code and improving readability in modern programming";
+        System.out.println(Arrays.stream(string100.split(" ")).min((x, y) -> x.length() - y.length()).orElse(null));
+
+        System.out.println();
+
     }
 }
