@@ -1054,5 +1054,53 @@ public class App {
 
         System.out.println();
 
+        // Count the Frequency of Each Character in a String
+
+        String name101 = "Debayan Senapati";
+        System.out.println(name101.chars().mapToObj(x -> (char) x).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting())));
+
+        System.out.println();
+
+        // Find Employees With the Highest Salary in Each Department
+
+        List<Employee> list102 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        Map<String, List<Employee>> map102 = list102.stream().collect(Collectors.groupingBy(x -> x.getDepartment()));
+        map102.forEach((department, employees) -> System.out.println(department + " : " + employees.stream().max((x, y) -> x.getSalary() - y.getSalary()).map(x -> x.getName()).orElse("")));
+
+        System.out.println();
+
+        // Find the First Duplicate Number in a List
+
+        List<Integer> list103 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        Set<Integer> set103 = new HashSet<>();
+        System.out.println(list103.stream().filter(x -> !set103.add(x)).findFirst().orElse(0));
+
+        System.out.println();
+
+        // Convert a List of Strings to a Map (String -> Length)
+
+        List<String> list104 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list104.stream().collect(Collectors.toMap(x -> x, x -> x.length())));
+
+        System.out.println();
+
+        // Reverse Each Word in a Sentence
+
+        String string105 = "Java Streams provide a powerful and expressive way to process collections of data efficiently reducing boilerplate code and improving readability in modern programming";
+        System.out.println(Arrays.stream(string105.split(" ")).map(x -> new StringBuilder(x).reverse().toString()).collect(Collectors.joining(" ")));
+
+        System.out.println();
+
     }
 }
