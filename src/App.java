@@ -1102,5 +1102,40 @@ public class App {
 
         System.out.println();
 
+        // Double All Values
+
+        List<Integer> list106 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list106.stream().map(x -> x * 2).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Convert to Uppercase
+
+        List<String> list107 = Arrays.asList("apple", "banana", "guava", "pumpkin");
+        list107.stream().map(x -> x.toUpperCase()).forEach(x -> System.out.println(x));
+
+        System.out.println();
+
+        // Find Even Numbers Only
+
+        List<Integer> list108 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list108.stream().filter(x -> (x % 2) == 0).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Count Words Starting With a Specific Letter
+
+        List<String> list109 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list109.stream().filter(x -> x.startsWith("A")).count());
+
+        System.out.println();
+
+        // Filter Words With Length Greater Than 4
+
+        List<Integer> list110 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list110.stream().filter(x -> x > 4).collect(Collectors.toList()));
+
+        System.out.println();
+
     }
 }
