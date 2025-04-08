@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 class Person {
@@ -1134,6 +1135,41 @@ public class App {
 
         List<Integer> list110 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
         System.out.println(list110.stream().filter(x -> x > 4).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Check If List Contains a Specific Element
+
+        List<String> list111 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list111.stream().anyMatch(x -> x.equals("Apple")));
+
+        System.out.println();
+
+        // Find the First Element of a List
+
+        List<String> list112 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list112.stream().findFirst());
+
+        System.out.println();
+
+        // Sort a List of Numbers
+
+        List<Integer> list113 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list113.stream().sorted((x, y) -> x - y).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Remove Duplicates From a List
+
+        List<String> list114 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot", "Apple");
+        System.out.println(list114.stream().distinct().collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Join Strings With Comma
+
+        List<String> list115 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list115.stream().collect(Collectors.joining(", ")));
 
         System.out.println();
 
