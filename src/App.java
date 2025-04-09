@@ -1183,11 +1183,37 @@ public class App {
 
         // Find Second Lowest Number in a List
 
+        List<Integer> list117 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list117.stream().sorted((x, y) -> x - y).collect(Collectors.toList()).get(0));
+
+        System.out.println();
+
         // Get List of Squared Numbers Without Duplicates
+
+        List<Integer> list118 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list118.stream().distinct().map(x -> x * x).collect(Collectors.toList()));
+
+        System.out.println();
 
         // Sort a Map by Value
 
+        Map<String, Integer> map119 = new HashMap<>();
+        map119.put("Alice", 85);
+        map119.put("Bob", 92);
+        map119.put("Charlie", 78);
+        map119.put("David", 92);
+        map119.put("Eve", 88);
+
+        map119.entrySet().stream().sorted((x, y) -> x.getValue() - y.getValue()).forEach(x -> System.out.println(x.getKey() + " : " + x.getValue()));
+
+        System.out.println();
+
         // Find Top 3 Maximum Numbers
+
+        List<Integer> list120 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list120.stream().sorted((x, y) -> y - x).limit(3).collect(Collectors.toList()));
+
+        System.out.println();
 
     }
 }
