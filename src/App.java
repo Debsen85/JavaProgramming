@@ -1172,5 +1172,22 @@ public class App {
 
         System.out.println();
 
+        // Group Strings by Their Length
+
+        List<String> list116 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        Map<Integer, List<String>> map116 = list116.stream().collect(Collectors.groupingBy(x ->  x.length()));
+        
+        map116.forEach((length, strings) -> System.out.println(length + " : " + strings));
+
+        System.out.println();
+
+        // Find Second Lowest Number in a List
+
+        // Get List of Squared Numbers Without Duplicates
+
+        // Sort a Map by Value
+
+        // Find Top 3 Maximum Numbers
+
     }
 }
