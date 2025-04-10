@@ -1215,5 +1215,72 @@ public class App {
 
         System.out.println();
 
+        // Find Common Elements Between Two Lists
+
+        List<Integer> list121One = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        List<Integer> list121Two = Arrays.asList(1, 40, 7, 7, 81, 9);
+        System.out.println(list121One.stream().filter(x -> list121Two.contains(x)).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Group Employees by Department
+
+        List<Employee> list122 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        Map<String, List<Employee>> map122= list122.stream().collect(Collectors.groupingBy(x -> x.getDepartment()));
+
+        map122.forEach((department, employee) -> {
+            System.out.println(department + ": " + employee.stream()
+                .map(x -> x.getName())
+                .collect(Collectors.joining(", ")));
+        });
+
+        System.out.println();
+
+        // Find the Longest String in a List
+
+        List<String> list123 = Arrays.asList("Apple", "Banana", "Guava", "Pumpkin", "Apricot");
+        Map<String, Integer> map123 = list123.stream().collect(Collectors.toMap(x -> x, x -> x.length()));
+
+        System.out.println(map123.entrySet().stream().max((x, y) -> x.getValue() - y.getValue()).map(x -> x.getKey()).orElse(""));
+
+        System.out.println();
+
+        // Sum of Salaries for Each Department
+
+        List<Employee> list124 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        Map<String, List<Employee>> map124= list124.stream().collect(Collectors.groupingBy(x -> x.getDepartment()));
+
+        map124.forEach((department, employee) -> {
+            System.out.println(department + ": " + employee.stream().collect(Collectors.summingInt(x -> x.getSalary())));
+        });
+
+        // List All Palindromes in a List
+
+        List<String> list125 = Arrays.asList("Apple", "BananaB", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list125.stream().filter(word -> word.equalsIgnoreCase(new StringBuilder(word).reverse().toString())).collect(Collectors.toList()));
+
+        System.out.println();
     }
 }
