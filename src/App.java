@@ -1318,5 +1318,40 @@ public class App {
 
         System.out.println();
 
+        // Remove all empty strings from a list.
+
+        List<String> list131 = Arrays.asList("Apple", "", "BananaB", "Guava", "", "Pumpkin", "Apricot");
+        System.out.println(list131.stream().filter(x -> x.length() > 0).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Get distinct elements from a list.
+
+        List<Integer> list132 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list132.stream().distinct().collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Get the first element of a list, if present.
+
+        List<Integer> list133 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list133.stream().findFirst().orElse(0));
+
+        System.out.println();
+
+        // Convert a list of strings into a comma-separated string.
+
+        List<String> list134 = Arrays.asList("Apple", "BananaB", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list134.stream().map(x -> x.toLowerCase()).collect(Collectors.joining(", ")));
+
+        System.out.println();
+
+        // Check if all numbers in a list are even.
+
+        List<Integer> list135 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(!list135.stream().anyMatch(x -> x % 2 == 1));
+
+        System.out.println();
+
     }
 }
