@@ -1282,5 +1282,41 @@ public class App {
         System.out.println(list125.stream().filter(word -> word.equalsIgnoreCase(new StringBuilder(word).reverse().toString())).collect(Collectors.toList()));
 
         System.out.println();
+
+        // Filter all numbers greater than 10 from a list.
+
+        List<Integer> list126 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list126.stream().filter(x -> x > 10).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Convert a list of strings to lowercase.
+
+        List<String> list127 = Arrays.asList("Apple", "BananaB", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list127.stream().map(x -> x.toLowerCase()).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Count how many elements are in a list.
+
+        List<Integer> list128 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list128.stream().count());
+
+        System.out.println();
+
+        // Find the maximum value in a list of integers.
+
+        List<Integer> list129 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list129.stream().max((x, y) -> x - y).orElse(0));
+
+        System.out.println();
+
+        // Sum all integers in a list.
+
+        List<Integer> list130 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list130.stream().collect(Collectors.summingInt(x -> x)));
+
+        System.out.println();
+
     }
 }
