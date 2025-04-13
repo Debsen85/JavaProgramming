@@ -65,6 +65,12 @@ class Employee {
     }
 }
 public class App {
+
+    private static long countVowels(String word) {
+        return word.toLowerCase().chars()
+            .filter(x -> "aeiou".indexOf(x) >= 0)
+            .count();
+    }
     public static void main(String[] args) throws Exception {
 
         // Given a list of integers, filter out even numbers and collect the result into a new list.
@@ -1350,6 +1356,42 @@ public class App {
 
         List<Integer> list135 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
         System.out.println(!list135.stream().anyMatch(x -> x % 2 == 1));
+
+        System.out.println();
+
+        // Check if any word starts with "a".
+
+        List<String> list136 = Arrays.asList("Apple", "BananaB", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list136.stream().filter(x -> x.startsWith("A")).collect(Collectors.joining(", ")));
+
+        System.out.println();
+
+        // Count how many times "Java" appears in a list.
+
+        List<String> list137 = Arrays.asList("Apple", "BananaB", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list137.stream().filter(x -> x.equals("Java")).count());
+
+        System.out.println();
+
+        // Filter strings that contain more than one vowel.
+
+        List<String> list138 = Arrays.asList("Apple", "BananaB", "Guava", "Pumpkin", "Apricot");
+        System.out.println(list138.stream().filter(word -> countVowels(word) > 1).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find the minimum value in a list.
+
+        List<Integer> list139 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list139.stream().min((x, y) -> x - y).orElse(0));
+
+        System.out.println();
+
+
+        // Convert a list of integers to a list of their squares.
+
+        List<Integer> list140 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list140.stream().map(x -> x * x).collect(Collectors.toList()));
 
         System.out.println();
 
