@@ -1395,5 +1395,40 @@ public class App {
 
         System.out.println();
 
+        // Filter a list of strings that start with a digit.
+
+        List<String> list141 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
+        System.out.println(list141.stream().filter(x -> Character.isDigit(x.charAt(0))).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Get the average of a list of numbers.
+
+        List<Integer> list142 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list142.stream().mapToDouble(Integer::doubleValue).average().orElse(0.0));
+
+        System.out.println();
+
+        // Find the length of each string in a list.
+
+        List<String> list143 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
+        System.out.println(list143.stream().collect(Collectors.toMap(x -> x, x -> x.length())));
+
+        System.out.println();
+
+        // Join all strings with “ - ” between them.
+
+        List<String> list144 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
+        System.out.println(list144.stream().collect(Collectors.joining(" - ")));
+
+        System.out.println();
+
+        // Sort a list of strings alphabetically.
+
+        List<String> list145 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
+        System.out.println(list145.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList()));
+
+        System.out.println();
+
     }
 }
