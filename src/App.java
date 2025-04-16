@@ -71,6 +71,10 @@ public class App {
             .filter(x -> "aeiou".indexOf(x) >= 0)
             .count();
     }
+
+    private static Character firstCharacter(String word) {
+        return word.charAt(0);
+    }
     public static void main(String[] args) throws Exception {
 
         // Given a list of integers, filter out even numbers and collect the result into a new list.
@@ -1427,6 +1431,57 @@ public class App {
 
         List<String> list145 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
         System.out.println(list145.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Group a list of strings by their starting letter.
+
+        List<String> list146 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
+        Map<Character, List<String>> map146 = list146.stream().collect(Collectors.groupingBy(x -> firstCharacter(x)));
+
+        map146.forEach((startingLetter, strings) -> System.out.println(startingLetter + " : " + strings.stream().collect(Collectors.joining(", "))));
+
+        System.out.println();
+
+        // Partition a list of numbers into even and odd.
+
+        List<Integer> list147 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        Map<Boolean, List<Integer>> map147 = list147.stream().collect(Collectors.partitioningBy(x -> x % 2 == 0));
+
+        map147.forEach((parity, values) -> System.out.println(parity + " : " + values.stream().collect(Collectors.toList())));
+
+        System.out.println();
+
+        // Count frequency of each word in a sentence.
+
+        String string148 = "Java Streams provide a powerful and expressive way to process collections of data efficiently reducing boilerplate code and improving readability in modern programming";
+        Map<String, Long> map148 = Arrays.stream(string148.split(" ")).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+
+        map148.forEach((string, values) -> System.out.println(string + " : " + values));
+
+        System.out.println();
+
+        // Flatten a List<List<Integer>> into a single list.
+
+        List<List<Integer>> list149 = Arrays.asList(
+            Arrays.asList(1, 2, 3),
+            Arrays.asList(4, 5),
+            Arrays.asList(6, 7, 8, 9)
+        );
+        System.out.println(list149.stream().flatMap(List::stream).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Sort a Map<String, Integer> by its values.
+
+        Map<String, Integer> map150 = new HashMap<>();
+        map150.put("Alice", 85);
+        map150.put("Bob", 92);
+        map150.put("Charlie", 78);
+        map150.put("David", 92);
+        map150.put("Eve", 88);
+
+        map150.entrySet().stream().sorted((x, y) -> x.getValue() - y.getValue()).forEach(x -> System.out.println(x.getKey() + " : " + x.getValue()));
 
         System.out.println();
 
