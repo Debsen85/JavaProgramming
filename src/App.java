@@ -1485,5 +1485,52 @@ public class App {
 
         System.out.println();
 
+        // Find the second highest number in a list.
+
+        List<Integer> list151 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list151.stream().sorted((x, y) -> y - x).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find all duplicate elements in a list.
+
+        List<Integer> list152 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        Set<Integer> set152 = new HashSet<>();
+        System.out.println(list152.stream().filter(x -> !set152.add(x)).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Return a list of top 3 longest strings.
+
+        List<String> list153 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
+        System.out.println(list153.stream().sorted((x, y) -> y.length() - x.length()).limit(3).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Sort a list of employees by name then by salary.
+
+        List<Employee> list154 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        System.out.println(list154.stream().sorted(Comparator.comparing(Employee::getName).thenComparing(Employee::getSalary)).map(x -> x.getName() + " " + x.getDepartment() + " " + x.getSalary()).collect(Collectors.joining(", ")));
+
+        System.out.println();
+
+        // Create a Map<String, Integer> from a list of strings (word → length).
+
+        List<String> list155 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
+        System.out.println(list155.stream().collect(Collectors.toMap(x -> x, x -> x.length())));
+
+        System.out.println();
+
     }
 }
