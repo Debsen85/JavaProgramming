@@ -64,6 +64,26 @@ class Employee {
         return name + " | Salary: " + salary + " | Dept: " + department + " | Age: " + age;
     }
 }
+
+class Transaction {
+    private String type;
+    private int amount;
+
+    public Transaction(String type, int amount) {
+        this.type = type;
+        this.amount = amount;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+}
+
+
 public class App {
 
     private static long countVowels(String word) {
@@ -1529,6 +1549,77 @@ public class App {
 
         List<String> list155 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
         System.out.println(list155.stream().collect(Collectors.toMap(x -> x, x -> x.length())));
+
+        System.out.println();
+
+        // Group employees by experience (e.g., >5 years, <=5 years).
+
+        List<Employee> list156 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+
+        Map<String, List<Employee>> map156 = list156.stream().collect(Collectors.groupingBy(x -> {
+            if (x.getAge() - 24 <= 5) return "Junior";
+            else return "Senior";
+        }));
+        map156.forEach((x, y) -> 
+            System.out.println(x + ": " + y)
+        );
+
+        System.out.println();
+
+        // Find common elements between two lists.
+
+        List<Integer> list157One = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        List<Integer> list157Two = Arrays.asList(1, 40, 7, 7, 81, 9);
+        System.out.println(list157One.stream().filter(x -> list157Two.contains(x)).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find the longest palindromic word from a list.
+
+        List<String> list158 = Arrays.asList("Apple", "BananaB", "AGuavauGA", "Pumpkin", "Apricot");
+        System.out.println(list158.stream().filter(word -> word.equalsIgnoreCase(new StringBuilder(word).reverse().toString())).max((x, y) -> x.length() - y.length()).orElse(""));
+
+        System.out.println();
+
+        // Given a list of transactions, sum the amount for each type (CREDIT, DEBIT).
+
+        List<Transaction> list159 = Arrays.asList(
+            new Transaction("CREDIT", 500),
+            new Transaction("DEBIT", 200),
+            new Transaction("CREDIT", 300),
+            new Transaction("DEBIT", 100),
+            new Transaction("CREDIT", 150),
+            new Transaction("DEBIT", 350),
+            new Transaction("CREDIT", 400),
+            new Transaction("DEBIT", 250),
+            new Transaction("CREDIT", 600),
+            new Transaction("DEBIT", 300),
+            new Transaction("CREDIT", 700),
+            new Transaction("DEBIT", 150),
+            new Transaction("CREDIT", 800),
+            new Transaction("DEBIT", 100),
+            new Transaction("CREDIT", 200)
+        );
+        Map<String, List<Transaction>> map159 = list159.stream().collect(Collectors.groupingBy(x -> x.getType()));
+        map159.forEach((transactionType, transaction) -> System.out.println(transaction.stream().collect(Collectors.summingInt(x -> x.getAmount()))));
+
+        System.out.println();
+
+        // Convert a list of strings into a set of their first characters.
+
+        List<String> list160 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
+        System.out.println(list160.stream().map(x -> Character.toString(x.charAt(0))).collect(Collectors.toSet()));
 
         System.out.println();
 
