@@ -1623,5 +1623,15 @@ public class App {
 
         System.out.println();
 
+        // Count how many characters are in each word of a list.
+
+        // Find the most repeated character in a string.
+
+        // Filter products with price > average price from a product list.
+
+        // Create a Map<Integer, List<String>> where key is string length.
+
+        // Convert a CSV string to a List<String> and sort it in reverse.
+
     }
 }
