@@ -1625,13 +1625,52 @@ public class App {
 
         // Count how many characters are in each word of a list.
 
+        List<String> list161 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
+        System.out.println(list161.stream().map(x -> x.length()).collect(Collectors.toSet()));
+
+        System.out.println();
+
         // Find the most repeated character in a string.
 
-        // Filter products with price > average price from a product list.
+        String string162 = "Java Streams provide a powerful and expressive way to process collections of data efficiently reducing boilerplate code and improving readability in modern programming";
+        Map<String, Long> map162 = Arrays.stream(string162.split(" ")).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+
+        System.out.println(map162.entrySet().stream().max((x, y) -> Integer.valueOf(x.getValue().intValue()) - Integer.valueOf(y.getValue().intValue())).map(x -> x.getKey()).orElse("Null"));
+
+        System.out.println();
+
+        // Filter employees with salary > average salary from a product list.
+
+        List<Employee> list163 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        Double average163 = list163.stream().collect(Collectors.averagingDouble(x -> x.getSalary()));
+        System.out.println(list163.stream().filter(x -> x.getSalary() > average163).map(x -> x.getName()).collect(Collectors.joining(", ")));
+
+        System.out.println();
 
         // Create a Map<Integer, List<String>> where key is string length.
 
-        // Convert a CSV string to a List<String> and sort it in reverse.
+        List<String> list164 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
+        System.out.println(list164.stream().collect(Collectors.toMap(x -> x, x -> x.length())));
+
+        System.out.println();
+
+        // Convert to a List<String> and sort it in reverse.
+
+        List<String> list165 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "Apricot");
+        System.out.println(list165.stream().sorted((x, y) -> y.compareTo(x)).collect(Collectors.toList()));
+
+        System.out.println();
 
     }
 }
