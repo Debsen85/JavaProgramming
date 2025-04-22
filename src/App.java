@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 class Person {
 
@@ -1671,6 +1672,42 @@ public class App {
         System.out.println(list165.stream().sorted((x, y) -> y.compareTo(x)).collect(Collectors.toList()));
 
         System.out.println();
+
+        // Filter out null values from a list.
+
+        List<String> list166 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list166.stream().filter(x -> !x.isEmpty()).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Convert a list of strings to uppercase.
+
+        List<String> list167 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list167.stream().map(x -> x.toUpperCase()).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Count how many strings are longer than 5 characters.
+
+        List<String> list168 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list168.stream().filter(x -> x.length() > 6).count());
+
+        System.out.println();
+
+
+        // Create a list of even numbers from 1 to 20.
+
+        System.out.println(IntStream.range(1, 21).filter(x -> x % 2 == 0).boxed().collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Check if all numbers in a list are positive.
+
+        List<Integer> list170 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(!list170.stream().distinct().anyMatch(x -> x < 0));
+
+        System.out.println();
+
 
     }
 }
