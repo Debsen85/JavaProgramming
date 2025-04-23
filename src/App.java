@@ -1708,6 +1708,40 @@ public class App {
 
         System.out.println();
 
+        // Print the square of each number in a list.
+
+        List<Integer> list171 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list171.stream().map(x -> x * x).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find the first string with length greater than 10.
+
+        List<String> list172 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list172.stream().filter(x -> x.length() > 6).findFirst().orElse("Not Found!"));
+
+        System.out.println();
+
+        // Find the last element in a list.
+
+        List<String> list173 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list173.stream().reduce((x, y) -> y).orElse("Not Found!"));
+
+        System.out.println();
+
+        // Count how many times "hello" appears in a list.
+
+        List<String> list174 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list174.stream().filter(x -> x.equals("hello")).count());
+
+        System.out.println();
+
+        // Filter strings that end with a specific character (e.g., 'e').
+
+        List<String> list175 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list175.stream().filter(x -> x.endsWith("e")).collect(Collectors.toList()));
+
+        System.out.println();
 
     }
 }
