@@ -1743,5 +1743,42 @@ public class App {
 
         System.out.println();
 
+        // Skip the first 3 elements of a list and print the rest.
+
+        List<String> list176 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list176.stream().skip(3).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find the sum of ASCII values of characters in a string.
+
+        String string177 = "Java Streams provide a powerful and expressive way to process collections of data efficiently reducing boilerplate code and improving readability in modern programming";
+        string177 = Arrays.stream(string177.split(" ")).reduce("", (x, y) -> x + y);
+
+        System.out.println(string177.chars().reduce(0, (x, y) -> x + y));
+
+        System.out.println();
+
+        // Check if any number is a multiple of 7 in a list.
+
+        List<Integer> list178 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list178.stream().anyMatch(x -> x % 7 == 0));
+
+        System.out.println();
+
+        // Filter names that contain a specific substring (e.g., "an").
+
+        List<String> list179 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list179.stream().filter(x -> x.contains("an")).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Convert a list of integers to doubles.
+
+        List<Integer> list180 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list180.stream().map(x -> Double.valueOf(x)).collect(Collectors.toList()));
+
+        System.out.println();
+
     }
 }
