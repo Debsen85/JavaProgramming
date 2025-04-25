@@ -1780,5 +1780,40 @@ public class App {
 
         System.out.println();
 
+        // Concatenate a list of strings into a single string.
+
+        List<String> list181 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list181.stream().collect(Collectors.joining()));
+
+        System.out.println();
+
+        // Get a list of all odd numbers from a list.
+
+        List<Integer> list182 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list182.stream().filter(x -> x % 2 == 1).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Find the smallest string based on length.
+
+        List<String> list183 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list183.stream().sorted((x, y) -> x.length() - y.length()).findFirst().orElse("404!"));
+
+        System.out.println();
+
+        // Sort a list of strings in reverse order.
+
+        List<String> list184 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list184.stream().sorted((x, y) -> y.compareTo(x)).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Print numbers from a list without using a loop.
+
+        List<Integer> list185 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list185.stream().collect(Collectors.toList()));
+
+        System.out.println();
+
     }
 }
