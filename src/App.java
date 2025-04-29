@@ -1815,5 +1815,69 @@ public class App {
 
         System.out.println();
 
+        // Find the top 2 most frequent elements in a list.
+
+        List<Integer> list186 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list186.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting())).entrySet().stream().sorted(Map.Entry.<Integer, Long>comparingByValue().reversed()).limit(2).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // From a list of employees, get the names of the highest-paid per department.
+
+        List<Employee> list187 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        Map<String, List<Employee>> map187 = list187.stream().collect(Collectors.groupingBy(x -> x.getDepartment()));
+
+        map187.forEach((department, employee) -> {
+            System.out.println(department + ": " + employee.stream()
+                .max((x, y) -> x.getSalary() - y.getSalary()));
+        });
+
+        System.out.println();
+
+        // Sort a list of employees by name then by salary.
+
+        List<Employee> list188 = List.of(
+            new Employee("Alice", 60000, "HR", 28),
+            new Employee("Bob", 75000, "IT", 35),
+            new Employee("Charlie", 50000, "Finance", 40),
+            new Employee("David", 85000, "IT", 45),
+            new Employee("Eve", 55000, "HR", 30),
+            new Employee("Frank", 92000, "Management", 50),
+            new Employee("Grace", 47000, "Support", 25),
+            new Employee("Hank", 70000, "Finance", 38),
+            new Employee("Ivy", 52000, "Support", 27),
+            new Employee("Jack", 80000, "IT", 42)
+        );
+        System.out.println(list188.stream().sorted(Comparator.comparing(Employee::getName).thenComparing(Employee::getSalary)).map(x -> x.getName() + " " + x.getDepartment() + " " + x.getSalary()).collect(Collectors.joining(", ")));
+
+        System.out.println();
+
+        // Count how many times each digit (0–9) appears in a long number string.
+
+        String string189 = "12003452398710234095";
+        System.out.println(string189.chars().mapToObj(c -> (char) c).filter(Character::isDigit).collect(Collectors.groupingBy(Function.identity(), Collectors.counting())));
+
+        System.out.println();
+
+        // Group words by their length.
+
+        List<String> list190 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        Map<Integer, List<String>> map190 = list190.stream().collect(Collectors.groupingBy(String::length));
+
+        map190.forEach((len, wordList) -> System.out.println(len + ": " + wordList));
+
+        System.out.println();
+
     }
 }
