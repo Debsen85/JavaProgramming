@@ -1,3 +1,4 @@
+import java.net.SocketImpl;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -1876,6 +1877,41 @@ public class App {
         Map<Integer, List<String>> map190 = list190.stream().collect(Collectors.groupingBy(String::length));
 
         map190.forEach((len, wordList) -> System.out.println(len + ": " + wordList));
+
+        System.out.println();
+
+        // Convert a list of strings to lowercase.
+
+        List<String> list191 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list191.stream().map(x -> x.toLowerCase()).collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Count the number of empty strings in a list.
+
+        List<String> list192 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list192.stream().filter(x -> x.isEmpty()).count());
+
+        System.out.println();
+
+        // Find the maximum value in a list of integers.
+
+        List<Integer> list193 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list193.stream().max((x, y) -> x - y).orElse(0));
+
+        System.out.println();
+
+        // Count the number of elements in a list.
+
+        List<Integer> list194 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list194.stream().count());
+
+        System.out.println();
+
+        // Filter strings that start with a specific letter (e.g., 'A').
+
+        List<String> list195 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list195.stream().filter(x -> x.startsWith("A")).collect(Collectors.toList()));
 
         System.out.println();
 
