@@ -1914,5 +1914,40 @@ public class App {
 
         System.out.println();
 
+        // Print only distinct values from a list.
+
+        List<Integer> list196 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list196.stream().distinct().collect(Collectors.toList()));
+
+        System.out.println();
+
+        // Join strings with a comma separator using Collectors.joining().
+
+        List<String> list197 = Arrays.asList("Apple", "1BananaB", "Guava", "2Pumpkin", "", "Apricot");
+        System.out.println(list197.stream().collect(Collectors.joining(", ")));
+
+        System.out.println();
+
+        // Find the first number greater than 50 in a list.
+
+        List<Integer> list198 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list198.stream().distinct().filter(x -> x > 50).sorted((x, y) -> x - y).findFirst().orElse(0));
+
+        System.out.println();
+
+        // Get the average of a list of integers.
+
+        List<Integer> list199 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list199.stream().collect(Collectors.averagingDouble(x -> x)));
+
+        System.out.println();
+
+        // Check if a list contains any negative number.
+
+        List<Integer> list200 = Arrays.asList(1, 2, 1, 40, 7, 6, 7, 81, 9, -7);
+        System.out.println(list200.stream().anyMatch(x -> x < 0));
+
+        System.out.println();
+
     }
 }
